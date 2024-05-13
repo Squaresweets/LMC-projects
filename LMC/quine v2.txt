@@ -1,0 +1,54 @@
+		LDA start
+		SUB strt
+		STO start
+		LDA second
+		SUB seconda
+		STO second
+start   LDA start
+		
+		SUB one //Check if we have reached the end
+		SUB tnn //If it is an LDA, STA, BRZ or BRA instruction we add one. However we canno directly store these numbers, otherwise they would get changed by this code, so we store 299 and then subtract an extra 1 (Done above)
+		
+		BRP change //If the number is zero or positive we must change it
+		BRA after
+change  ADD end
+after	ADD one
+		ADD tnn
+second  STA scnd //IMPORTANT
+
+		SUB one //Check if we have reached the end
+		BRZ brkout //We have reached the final instruction
+
+        LDA start
+        ADD one
+        STA start
+        
+        LDA second
+        ADD one
+        STA second
+        
+        BRA start
+        
+brkout	ADD one
+		STA 0
+		BRA newpgrm
+tnn     DAT 299
+end     DAT newpgrm
+strt    DAT start
+seconda DAT second
+one     DAT 1 //Also acts as our terminator
+newpgrm DAT 0
+        DAT 0
+        DAT 0
+        DAT 0
+        DAT 0
+        DAT 0
+        DAT 0
+        DAT 0
+        DAT 0
+        DAT 0
+        DAT 0
+        DAT 0
+        DAT 0
+        DAT 0
+scnd    DAT 0

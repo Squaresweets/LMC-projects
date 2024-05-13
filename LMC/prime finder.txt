@@ -1,0 +1,31 @@
+start	LDA TESTING //Test the next number
+		ADD ONE
+		STA TESTING
+		
+		LDA ONE
+		STA DIV //Reset DIV
+		
+		
+divides LDA DIV //Add one to DIV
+		ADD ONE
+		STA DIV
+		
+		SUB TESTING //Test if we have tested all DIVs
+		ADD ONE
+		ADD DIV //If div is half of it, it is prime
+		BRP PRIME
+		
+		LDA TESTING
+divide	SUB DIV
+		BRZ start //The number is not prime
+		BRP divide
+		
+		BRA divides //If we get here the number wasn't divisible by div
+		
+PRIME	LDA TESTING
+		OUT
+		BRP start
+
+ONE		DAT 1
+TESTING	DAT 1 //Add one at the start so start with this
+DIV		DAT 0

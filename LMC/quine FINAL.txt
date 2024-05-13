@@ -1,0 +1,38 @@
+			LDA term //Instantiate our pointer with 0
+			STA pointer
+
+start       ADD addd // Create an add instruction pointing to our pointer
+			
+			STA c1 // Store it where it is needed
+			ADD stamlda // Turn it into a store instruction
+			ADD nextPtr //Offset it by where it needs to be stored
+			STA c2 //Store it where it is needed
+
+			LDA pointer
+			SUB noAddPtr //Subtract the point where we no longer add from the pointer
+			BRP noAdd //If it is positive, we are past the no add flag
+			LDA nextPtr //We need to add this on
+			BRA c1
+noAdd		LDA term //terminator secretly doubles as 0
+
+c1			ADD 0 // Get the instruction we need to copy
+c2			STA 0 // Changed by previous instruction
+
+			BRZ start2 //If wa have reached the terminator, start execution of the next one
+			LDA pointer // Increment our pointer
+			ADD one
+			STA pointer
+			BRA start //Otherwise loop
+
+pointer 	DAT -1 //A pointer to which instruction we are copying
+nextPtr     DAT next //A pointer of how much to offset
+noAddPtr   	DAT noAddPtr //The flag after which we don't add the offset
+
+one		    DAT 1
+load		LDA
+addd		ADD
+stamlda     SUB
+
+term        HLT // Terminator
+next        DAT 0
+start2	    DAT

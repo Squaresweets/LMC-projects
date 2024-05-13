@@ -1,0 +1,13 @@
+start	INP
+		STA a
+		INP
+		SUB a
+		BRP aless
+		LDA a //a is bigger
+		BRA end
+		
+aless 	ADD a //Get back to original number
+end	    OUT
+		BRA start
+
+a		DAT

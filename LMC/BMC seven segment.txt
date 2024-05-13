@@ -1,0 +1,78 @@
+	
+	
+		//Order of execution
+		//Load number
+		//Add that to base address of px0
+		//Load the number which shows which to turn on and off
+		//Divide it by 2, keeping track of the result and whether it went in perfectly
+		//If it dind't go in perfectly, set current address to on, otherwise set it to off
+		//Add one to address
+		//If counter is more than 3, add 32
+		//Repeat 5 times
+
+
+		
+		LDA num
+		ADD px0ptr
+		ADD load
+		STA c1
+c1		LDA 0
+		STA px
+		
+l2		LDA zero
+		STA divc
+		
+		
+l1		LDA divc
+		ADD one
+		LDA px
+		SUB 2
+		STA px
+		
+		BRZ div2
+		BRP l1
+		BRA ndiv2
+		
+div2	LDA zero
+		BRA disp
+ndiv2   LDA max
+		
+disp	STA tmp
+		LDA ptr
+		ADD store
+		STA c2
+		LDA tmp
+c2		STA 0
+		ADD one
+		STA ptr
+		
+		LDA divc
+		STA px
+		BRA l2
+
+num		DAT 69
+ptr     DAT 150
+divc    DAT 0
+px		DAT 0
+tmp		DAT 0
+
+
+
+px0ptr	DAT px0 //POINTER to px0
+px0		DAT 31599 //111101101101111
+px1		DAT  4681 //001001001001001
+px2		DAT 29671 //111001111100111
+px3		DAT 29647 //111001111001111
+px4		DAT 23496 //101101111001000
+px5		DAT 31183 //111100111001111
+px6		DAT 31215 //111100111101111
+px7		DAT 29257 //111001001001001
+px8		DAT 31727 //111101111101111
+px9		DAT 31695 //111101111001111
+
+load	LDA
+store	STA
+one     DAT 1
+two     DAT 2
+zero    DAT 0
+max     DAT 91024

@@ -1,0 +1,10 @@
+        LDA 0
+        STA 10
+        LDA 0
+        ADD one
+        STA 0
+        LDA 1
+        ADD one
+        STA 1
+        BRA 0
+one     DAT 1

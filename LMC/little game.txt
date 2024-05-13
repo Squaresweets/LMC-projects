@@ -1,0 +1,117 @@
+start	LDA mcnt //Subtract one from the tiles left
+		SUB one
+		STA mcnt
+		BRZ halt //we have beaten the game
+		
+		LDA p //Render player
+		STA pold
+		ADD store
+		STA c1 //C stands for change
+		
+		LDA mooo
+c1		STA 0 //Store -111 in where the player currently is
+		
+inputl	INP //This method will break with a bad input, but takes less bytes ._.
+		ADD branch
+		ADD bb
+b		STA c4 //Go forward from here (2, 4, 6, 8 depending on input)
+c4		BRA 0
+		
+down	LDA ten //Controls
+		BRA break
+left	LDA mone
+		BRA break
+right	LDA one
+		BRA break
+up		LDA mten
+
+break	ADD p
+		STA p //If this is wrong and we can't move there we can just load pold
+		Add load
+		STA c3
+c3		LDA 0 //Collision check
+		BRZ start //We can move there if it is positive
+		LDA pold //We can't move there
+		STA p
+		
+		BRA inputl
+		
+halt	HLT //well done :D
+
+
+p		DAT 74 //50-99
+pold	DAT 0 //50-99
+store	DAT 300
+load	DAT 500
+branch	DAT 600
+one		DAT 1
+mone	DAT -1
+mooo	DAT -111
+ten		DAT 10
+mten	DAT -10
+two		DAT 2
+zero	DAT 0
+bb 		DAT b
+l49 	DAT 550
+
+mcnt	DAT 44 //Move counter
+
+		DAT 0 //padding
+		DAT 0
+		DAT 0
+
+		DAT -555 //level line 1
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT -555
+		
+		DAT 0 //level line 2
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT -555
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		
+		DAT 0 //level line 3
+		DAT 0
+		DAT 0
+		DAT -555
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		
+		DAT 0 //level line 4
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+
+
+		DAT 0 //level line 5
+		DAT 0
+		DAT -555
+		DAT -555
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0
+		DAT 0

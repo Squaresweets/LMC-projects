@@ -1,0 +1,111 @@
+//////////////////////////////C.1//////////////////////////////
+        INP
+        STA num1
+        INP
+        STA num2
+		
+loop    LDA total
+        ADD num1
+        STA total
+		
+        LDA num2
+        SUB one
+        BRZ break
+        STA num2
+        BRA loop
+		
+break   LDA total
+        OUT
+        
+        
+num1    DAT
+total   DAT
+num2    DAT
+one     DAT 1
+
+//////////////////////////////C.1a//////////////////////////////
+start	INP
+        STA num1
+		BRZ halt
+        INP
+        STA num2
+		BRZ halt
+		
+loop    LDA total
+        ADD num1
+        STA total
+		
+        LDA num2
+        SUB one
+        STA num2
+        BRZ break
+        BRA loop
+		
+break   LDA total
+        OUT
+		LDA zero
+		STA total
+		BRA start
+
+halt	HLT
+        
+num1    DAT
+total   DAT
+num2    DAT
+one     DAT 1
+zero    DAT
+
+
+//////////////////////////////C.2//////////////////////////////
+		INP 
+		STA NUM1
+		INP
+		STA NUM2
+		
+LOOP	LDA i
+		ADD ONE
+		STA i
+		
+		LDA NUM1
+		SUB NUM2
+		STA NUM1
+		BRP LOOP
+		
+		LDA i
+		OUT
+		LDA NUM1
+		ADD NUM2 //Adjust for the loop again
+		OUT
+		HLT
+		
+NUM1	DAT
+NUM2	DAT
+i		DAT -1 //Adjusting for how the loop works, sure it is a bit hacky, but ¯\_(ツ)_/¯
+ONE		DAT 1
+
+
+//////////////////////////////C.3//////////////////////////////
+		INP
+		STA NUM
+		
+LOOP	INP
+		STA GUESS
+		LDA NUM
+		SUB GUESS
+		BRZ CORRECT
+		BRP LOWER
+		
+		LDA H
+		OTC
+		BRA LOOP
+		
+LOWER   LDA L
+		OTC
+		BRA LOOP
+		
+CORRECT HLT
+
+NUM		DAT
+GUESS	DAT
+H		DAT 72
+L		DAT 76

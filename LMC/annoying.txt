@@ -1,0 +1,40 @@
+3 numbers
+multiply first 2
+multiply last 2
+output largest
+Since the center one is the same it is just which ever one is bigger times the center one
+
+		INP
+		STA first
+		INP
+		STA second
+		INP
+		SUB first
+		BRP tBigger //Third number is bigger
+fBigger	LDA first
+		BRA br
+tBigger	ADD first
+br		STA third //By the time we get to here we have the biggest number in the third varaible 
+
+		LDA second
+loop	STA first
+		
+		LDA third //we are using third as a counter
+		SUB one
+		BRZ halt
+		STA third
+		
+		LDA first
+		ADD second
+		BRA loop
+		
+halt	LDA first
+		OUT
+		HLT
+		
+first	DAT
+second	DAT
+third	DAT
+one		DAT 1
+		
+		

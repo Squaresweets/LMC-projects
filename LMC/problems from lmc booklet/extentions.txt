@@ -1,0 +1,82 @@
+//////////////////////////////X.1//////////////////////////////
+		INP
+		OUT
+		STA NUM
+LOOP	LDA NUM
+		SUB oddnums
+		
+		BRP POS
+		BRA HALT
+		
+POS		STA NUM
+		LDA oddnums
+		ADD two
+		STA oddnums
+		LDA i
+		ADD one
+		STA i
+		BRA LOOP
+		
+HALT    LDA i
+		OUT
+		LDA NUM
+		OUT
+		HLT
+		
+		
+
+i	    DAT
+oddnums DAT 1
+two		DAT 2
+one		DAT 1
+NUM		DAT
+
+
+
+//////////////////////////////X.2//////////////////////////////
+loop1 LDA i //Increment out counter by 1
+      ADD one
+      STA i
+      
+	  LDA total //Get our total (starts as 355)
+      SUB oot   //Subtracts 113
+      STA total
+leep1 BRP loop1
+
+      LDA i  //Correct by one
+      SUB one
+      OUT //Output our value
+      LDA loper //Initialise our multiplier counter
+      STO i
+      
+      LDA total //Get back to where we were before
+      ADD oot
+      STA total
+      STA temp
+      
+      LDA overallCounter //Check if we have done 6 digits
+      SUB one
+      STA overallCounter
+      BRZ halt
+      
+loop2 LDA total //Multiply our thing by 10
+      ADD temp
+      STA total
+      LDA i
+      SUB one
+      STA i
+      BRZ loop1
+leep2 BRA loop2
+
+halt  HLT
+
+temp  DAT 0
+i     DAT 0
+total DAT 355
+tff   DAT 355
+oot   DAT 113
+loper DAT 9
+one   DAT 1
+zero  DAT 0
+
+overallCounter DAT 7

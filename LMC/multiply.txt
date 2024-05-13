@@ -1,0 +1,32 @@
+        INP
+        STA num1
+        OUT
+        
+        LDA astrix
+        OTC
+        
+        INP
+        STA num2
+        OUT
+        
+        LDA equals
+        OTC
+        
+loop    LDA total
+        ADD num1
+        STA total
+        LDA num2
+        SUB one
+        BRZ break
+        STA num2
+        BRA loop
+break   LDA total
+        OUT
+        
+        
+num1    DAT
+total   DAT
+num2    DAT
+one     DAT 1
+equals  DAT 61
+astrix  DAT 42

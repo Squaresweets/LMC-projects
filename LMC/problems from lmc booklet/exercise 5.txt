@@ -1,0 +1,85 @@
+//////////////////////////////5.1//////////////////////////////
+        LDA TEN
+        STA COUNT
+        OUT
+LOOPTOP LDA COUNT
+        SUB ONE
+        OUT
+        STA COUNT
+        SUB ONE
+        BRZ ENDLOOP
+        BRA LOOPTOP
+ENDLOOP HLT
+ONE     DAT 1
+TEN     DAT 10
+COUNT   DAT
+
+
+//////////////////////////////5.2//////////////////////////////
+START   INP
+		
+		SUB NNN
+		BRZ END
+		ADD NNN
+		
+		ADD TOTAL
+		STA TOTAL
+		
+		BRA START
+END     LDA TOTAL
+		OUT
+		HLT
+		
+TOTAL   DAT
+NNN     DAT 999
+
+
+//////////////////////////////5.3//////////////////////////////
+//This one might be a little bit overcomplicated but I wanted to make sure it didn't print the number over an odd number
+		INP
+		STA MAX
+		
+LOOP    LDA i
+		ADD two
+		STA i
+		
+		SUB MAX
+		BRZ HALTP //If it is even (print out the final one
+		BRP HALT  //If it is odd
+		ADD MAX
+		
+		OUT
+		BRA LOOP
+
+HALTP   OUT
+HALT    HLT
+
+
+
+i       DAT
+MAX     DAT
+two     DAT 2
+
+//////////////////////////////5.4//////////////////////////////
+		INP
+		STA i
+		STA ORIG
+		
+LOOP    LDA CURRENT
+        ADD ORIG
+		STA CURRENT
+		LDA i
+		SUB ONE
+		STA i
+		BRZ END
+		BRA LOOP
+		
+END     LDA CURRENT
+		OUT
+		HLT
+
+ONE		DAT 1
+CURRENT	DAT
+ORIG	DAT
+i		DAT
+		

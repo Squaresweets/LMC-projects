@@ -1,0 +1,23 @@
+        INP
+        STA CNT
+        STA ORG
+        LDA TTL
+        ADD ORG
+        STA TTL
+        LDA CNT
+        SUB ONE
+        STA CNT
+        BRZ 11
+        BRA 3
+        LDA TTL
+        OUT
+        LDA ZERO
+        STA CNT
+        STA ORG
+        STA TTL
+        HLT
+CNT     DAT
+TTL     DAT
+ORG     DAT
+ONE     dat 1
+ZERO    dat 0

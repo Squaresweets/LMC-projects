@@ -1,0 +1,75 @@
+LOOP	INP        ///////////////INITIAL NUMBER INPUT///////////////
+		BRZ LOOP2
+EDIT    STA VALUE1
+		
+		LDA EDIT
+		ADD ONE
+		STA EDIT
+
+		BRA LOOP
+		
+
+LOOP2	LDA VALUE1 ///////////////BUBBLE SORT///////////////
+		STA TEMP
+EDIT1   LDA VALUE2 
+		BRZ BRKOUT //We have reached the final number
+		SUB TEMP
+		BRP V2BGR
+		
+		ADD TEMP
+EDIT2   STA VALUE1 
+		LDA TEMP
+EDIT3   STA VALUE2 
+		STA CHANGES //Just to remember that we have changed something and we aren't done
+		
+		
+V2BGR	LDA LOOP2 //Now we need to add one to all STA and LDA functions in LOOP2
+		ADD ONE
+		STA LOOP2
+		ADD ONE
+		STA EDIT1
+		SUB TWOHUN
+		STA EDIT3
+		SUB ONE
+		STA EDIT2
+		
+		BRA LOOP2
+		
+BRKOUT	LDA lv1    ///////////////RESSETING BUBBLE SORT///////////////
+		STA LOOP2
+		LDA lv2
+		STA EDIT1
+		LDA sv1
+		STA EDIT2
+		LDA sv2
+		STA EDIT3
+		LDA CHANGES
+		BRZ DONE //Check if there were any changes
+		
+		LDA ZERO
+		STA CHANGES //Reset the changes flag
+		BRA LOOP2
+		
+DONE	LDA VALUE1 ///////////////PRINTING OUTPUT///////////////
+		BRZ HALT
+		OUT
+		LDA DONE
+		ADD ONE
+		STA DONE
+		BRA DONE
+
+HALT	HLT
+
+
+lv1		LDA VALUE1
+lv2		LDA VALUE2
+sv1		STA VALUE1
+sv2		STA VALUE2
+TEMP	DAT
+ZERO	DAT 0
+ONE		DAT 1
+TWOHUN	DAT 200
+CHANGES	DAT 0
+VALUE1	DAT
+VALUE2	DAT
+		

@@ -1,0 +1,48 @@
+//////////////////////////////4.1//////////////////////////////
+           INP 
+           STA FIRST
+           INP
+           STA SECOND
+		   
+           SUB FIRST //If positive second is bigger
+           BRP SECONDBIG
+           LDA SECOND
+           OUT
+           BRA PROGRAMEND
+SECONDBIG  LDA FIRST
+           OUT
+PROGRAMEND HLT
+FIRST      DAT
+SECOND     DAT
+
+
+//////////////////////////////4.2//////////////////////////////
+           INP
+		   BRP pos
+		   LDA N
+		   OTC
+		   HLT
+pos        LDA P
+		   OTC
+		   HLT
+		   
+N          DAT 78
+P          DAT 80
+
+
+//////////////////////////////4.3//////////////////////////////
+           INP
+		   STA first
+		   INP
+		   SUB first
+		   BRZ equal
+		   LDA zero
+		   OUT
+		   HLT
+equal      LDA one
+		   OUT
+		   HLT
+
+one        DAT 1
+zero       DAT 0
+first      DAT
